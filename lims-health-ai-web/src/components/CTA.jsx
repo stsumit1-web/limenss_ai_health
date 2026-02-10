@@ -1,6 +1,11 @@
 import { useState } from 'react';
 
 const FORMSUBMIT_URL = 'https://formsubmit.co/info.limenssgroup@gmail.com';
+const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
+const NETLIFY_FORM_NAME = 'lhxp-contact';
+
+// Optional: set in Netlify env vars as VITE_WEB3FORMS_ACCESS_KEY for a third delivery channel
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '';
 
 export default function CTA() {
   const [formData, setFormData] = useState({
@@ -9,6 +14,7 @@ export default function CTA() {
     contact: '',
     email: '',
     type: 'Clinic',
+    enquiryType: 'Request a Demo',
   });
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
 
@@ -16,25 +22,72 @@ export default function CTA() {
     e.preventDefault();
     setStatus('submitting');
 
-    const formDataToSend = new FormData();
-    formDataToSend.append('_subject', `LHXP Enquiry: ${formData.clinicName || 'New request'}`);
-    formDataToSend.append('_template', 'table');
-    formDataToSend.append('Clinic name', formData.clinicName);
-    formDataToSend.append('City', formData.city);
-    formDataToSend.append('Contact number', formData.contact);
-    formDataToSend.append('Email', formData.email);
-    formDataToSend.append('Type', formData.type);
+    const subject = `LHXP Enquiry: ${formData.clinicName || 'New request'}`;
+
+    // Build payloads for all backends
+    const netlifyParams = new URLSearchParams();
+    netlifyParams.append('form-name', NETLIFY_FORM_NAME);
+    netlifyParams.append('clinicName', formData.clinicName);
+    netlifyParams.append('city', formData.city);
+    netlifyParams.append('contact', formData.contact);
+    netlifyParams.append('email', formData.email);
+    netlifyParams.append('type', formData.type);
+    netlifyParams.append('enquiryType', formData.enquiryType);
+    netlifyParams.append('bot-field', '');
+
+    const formSubmitData = new FormData();
+    formSubmitData.append('_subject', subject);
+    formSubmitData.append('_template', 'table');
+    formSubmitData.append('_url', typeof window !== 'undefined' ? window.location.href : '');
+    formSubmitData.append('_replyto', formData.email);
+    formSubmitData.append('Clinic name', formData.clinicName);
+    formSubmitData.append('City', formData.city);
+    formSubmitData.append('Contact number', formData.contact);
+    formSubmitData.append('Email', formData.email);
+    formSubmitData.append('Type', formData.type);
+    formSubmitData.append('Enquiry type', formData.enquiryType);
+
+    const promises = [
+      // 1. Netlify Forms (enable email notification in Netlify dashboard)
+      fetch('/', {
+        method: 'POST',
+        body: netlifyParams.toString(),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
+      }),
+      // 2. FormSubmit (activate once at formsubmit.co for this email)
+      fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        body: formSubmitData,
+        headers: { Accept: 'application/json' },
+      }),
+    ];
+
+    if (WEB3FORMS_ACCESS_KEY) {
+      promises.push(
+        fetch(WEB3FORMS_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject,
+            clinicName: formData.clinicName,
+            city: formData.city,
+            contact: formData.contact,
+            email: formData.email,
+            type: formData.type,
+            enquiryType: formData.enquiryType,
+          }),
+        })
+      );
+    }
 
     try {
-      const res = await fetch(FORMSUBMIT_URL, {
-        method: 'POST',
-        body: formDataToSend,
-        headers: { Accept: 'application/json' },
-      });
+      const results = await Promise.allSettled(promises);
+      const anySuccess = results.some((r) => r.status === 'fulfilled' && r.value?.ok === true);
 
-      if (res.ok) {
+      if (anySuccess) {
         setStatus('success');
-        setFormData({ clinicName: '', city: '', contact: '', email: '', type: 'Clinic' });
+        setFormData({ clinicName: '', city: '', contact: '', email: '', type: 'Clinic', enquiryType: 'Request a Demo' });
       } else {
         setStatus('error');
       }
@@ -60,21 +113,9 @@ export default function CTA() {
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           <a
             href="#contact-form"
-            className="inline-flex items-center px-6 py-3.5 rounded-card bg-white text-healthcare-teal font-semibold hover:bg-healthcare-cream transition-all duration-300"
+            className="inline-flex items-center px-8 py-3.5 rounded-card bg-white text-healthcare-teal font-semibold hover:bg-healthcare-cream transition-all duration-300 shadow-md"
           >
-            Request a Demo
-          </a>
-          <a
-            href="#contact-form"
-            className="inline-flex items-center px-6 py-3.5 rounded-card border-2 border-white text-white font-semibold hover:bg-white/10 transition-all duration-300"
-          >
-            Start a Pilot Clinic
-          </a>
-          <a
-            href="#contact-form"
-            className="inline-flex items-center px-6 py-3.5 rounded-card border-2 border-white text-white font-semibold hover:bg-white/10 transition-all duration-300"
-          >
-            Talk to Us
+            Get in Touch
           </a>
         </div>
 
@@ -148,6 +189,20 @@ export default function CTA() {
                 placeholder="e.g. clinic@example.com"
               />
             </div>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="enquiryType" className="block text-white/90 text-sm font-medium mb-2">I want to</label>
+            <select
+              id="enquiryType"
+              name="enquiryType"
+              value={formData.enquiryType}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-white/30 bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-white/50"
+            >
+              <option value="Request a Demo" className="text-healthcare-blue">Request a Demo</option>
+              <option value="Start a Pilot Clinic" className="text-healthcare-blue">Start a Pilot Clinic</option>
+              <option value="Talk to Us" className="text-healthcare-blue">Talk to Us</option>
+            </select>
           </div>
           <div className="mb-4">
             <label htmlFor="type" className="block text-white/90 text-sm font-medium mb-2">Type</label>

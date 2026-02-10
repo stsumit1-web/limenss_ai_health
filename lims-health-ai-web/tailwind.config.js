@@ -5,6 +5,8 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx,css}",
   ],
   safelist: [
+    'bg-healthcare-bg',
+    'text-healthcare-blue',
     'from-healthcare-teal/20',
     'to-healthcare-mint/20',
     'from-healthcare-mint/20',

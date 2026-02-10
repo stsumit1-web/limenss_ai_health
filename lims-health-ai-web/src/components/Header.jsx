@@ -17,8 +17,9 @@ export default function Header() {
             <a href="#solution" className="text-healthcare-blue/70 hover:text-healthcare-teal text-sm font-medium transition-colors">Solution</a>
             <a href="#platform" className="text-healthcare-blue/70 hover:text-healthcare-teal text-sm font-medium transition-colors">Platform</a>
             <a href="#features" className="text-healthcare-blue/70 hover:text-healthcare-teal text-sm font-medium transition-colors">Features</a>
+            <a href="#consultation-on-the-go" className="text-healthcare-blue/70 hover:text-healthcare-teal text-sm font-medium transition-colors">Consultation On the Go</a>
             <a href="#cta" className="px-4 py-2 rounded-card bg-healthcare-teal text-white text-sm font-semibold hover:bg-healthcare-teal/90 transition-colors">
-              Request Demo
+              Get in Touch
             </a>
           </nav>
 
@@ -46,7 +47,8 @@ export default function Header() {
               <a href="#solution" className="text-healthcare-blue/70 hover:text-healthcare-teal" onClick={() => setOpen(false)}>Solution</a>
               <a href="#platform" className="text-healthcare-blue/70 hover:text-healthcare-teal" onClick={() => setOpen(false)}>Platform</a>
               <a href="#features" className="text-healthcare-blue/70 hover:text-healthcare-teal" onClick={() => setOpen(false)}>Features</a>
-              <a href="#cta" className="text-healthcare-teal font-semibold" onClick={() => setOpen(false)}>Request Demo</a>
+              <a href="#consultation-on-the-go" className="text-healthcare-blue/70 hover:text-healthcare-teal" onClick={() => setOpen(false)}>Consultation On the Go</a>
+              <a href="#cta" className="text-healthcare-teal font-semibold" onClick={() => setOpen(false)}>Get in Touch</a>
             </div>
           </nav>
         )}

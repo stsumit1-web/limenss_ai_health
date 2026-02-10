@@ -20,13 +20,7 @@ export default function Hero() {
                 href="#cta"
                 className="inline-flex items-center px-6 py-3.5 rounded-card bg-healthcare-teal text-white font-semibold shadow-md hover:bg-healthcare-teal/90 transition-all duration-300 hover:shadow-lg"
               >
-                Request a Free Clinic Demo
-              </a>
-              <a
-                href="#cta"
-                className="inline-flex items-center px-6 py-3.5 rounded-card border-2 border-healthcare-teal text-healthcare-teal font-semibold hover:bg-healthcare-teal/5 transition-all duration-300"
-              >
-                Start a Pilot
+                Get in Touch
               </a>
             </div>
           </div>

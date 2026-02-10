@@ -4,6 +4,7 @@ import ProblemSection from './components/ProblemSection'
 import SolutionSection from './components/SolutionSection'
 import PlatformShowcase from './components/PlatformShowcase'
 import FeaturesByUser from './components/FeaturesByUser'
+import ConsultationOnTheGo from './components/ConsultationOnTheGo'
 import PandemicSection from './components/PandemicSection'
 import Differentiators from './components/Differentiators'
 import TrustSection from './components/TrustSection'
@@ -27,6 +28,9 @@ function App() {
         </section>
         <section id="features">
           <FeaturesByUser />
+        </section>
+        <section id="consultation-on-the-go">
+          <ConsultationOnTheGo />
         </section>
         <PandemicSection />
         <Differentiators />

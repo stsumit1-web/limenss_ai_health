@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#E5ECF0"/>
+  <!-- Document / prescription -->
+  <rect x="220" y="140" width="360" height="280" rx="12" fill="#F8FAFA" stroke="#34A0A4" stroke-width="2"/>
+  <rect x="240" y="170" width="200" height="12" rx="2" fill="#D8E2E8"/>
+  <rect x="240" y="195" width="280" height="10" rx="2" fill="#E5ECF0"/>
+  <rect x="240" y="215" width="260" height="10" rx="2" fill="#E5ECF0"/>
+  <rect x="240" y="235" width="240" height="10" rx="2" fill="#76C893" opacity="0.6"/>
+  <rect x="240" y="255" width="300" height="10" rx="2" fill="#E5ECF0"/>
+  <!-- AI sparkle / generative -->
+  <circle cx="580" cy="260" r="70" fill="#34A0A4" opacity="0.15"/>
+  <circle cx="580" cy="260" r="50" fill="#34A0A4" opacity="0.25"/>
+  <path d="M580 220 L585 255 L620 260 L585 265 L580 300 L575 265 L540 260 L575 255 Z" fill="#34A0A4"/>
+  <path d="M560 240 L562 252 L574 254 L562 256 L560 268 L558 256 L546 254 L558 252 Z" fill="#76C893" opacity="0.9"/>
+  <path d="M600 270 L602 278 L610 280 L602 282 L600 290 L598 282 L590 280 L598 278 Z" fill="#76C893" opacity="0.9"/>
+  <!-- Audio / listen wave -->
+  <path d="M280 360 Q320 340 360 360 Q400 380 440 360 Q480 340 520 360" stroke="#34A0A4" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M290 380 Q330 360 370 380 Q410 400 450 380 Q490 360 530 380" stroke="#5B9EAD" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <circle cx="400" cy="370" r="12" fill="#34A0A4"/>
+  <!-- Label -->
+  <text x="400" y="460" text-anchor="middle" fill="#184E77" font-size="22" font-weight="600" font-family="system-ui,sans-serif">AI prescription summary</text>
+</svg>

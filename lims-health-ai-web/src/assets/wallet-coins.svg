@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#E5ECF0"/>
+  <!-- Wallet -->
+  <rect x="280" y="180" width="240" height="160" rx="16" fill="#F8FAFA" stroke="#34A0A4" stroke-width="3"/>
+  <rect x="300" y="200" width="200" height="100" rx="8" fill="#D8E2E8"/>
+  <circle cx="400" cy="250" r="28" fill="#34A0A4" opacity="0.9"/>
+  <circle cx="400" cy="250" r="20" fill="#76C893"/>
+  <text x="400" y="258" text-anchor="middle" fill="#184E77" font-size="18" font-weight="bold" font-family="system-ui,sans-serif">&#8377;</text>
+  <!-- Coins stack -->
+  <circle cx="520" cy="280" r="45" fill="#34A0A4" opacity="0.85"/>
+  <circle cx="520" cy="280" r="35" fill="#76C893" opacity="0.9"/>
+  <circle cx="520" cy="265" r="42" fill="#34A0A4" opacity="0.7"/>
+  <circle cx="520" cy="265" r="32" fill="#5B9EAD"/>
+  <circle cx="520" cy="250" r="38" fill="#34A0A4" opacity="0.9"/>
+  <circle cx="520" cy="250" r="28" fill="#76C893"/>
+  <text x="520" y="258" text-anchor="middle" fill="#184E77" font-size="22" font-weight="bold" font-family="system-ui,sans-serif">+</text>
+  <!-- Reward label -->
+  <text x="400" y="380" text-anchor="middle" fill="#184E77" font-size="24" font-weight="600" font-family="system-ui,sans-serif">Wallet Coins &amp; Rewards</text>
+</svg>
