@@ -186,12 +186,12 @@ export default function FeaturesByUser() {
   const current = roles.find((r) => r.id === active) || roles[0];
 
   return (
-    <section className="section-padding bg-healthcare-bgDark">
+    <section className="section-padding bg-healthcare-blue">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-healthcare-blue text-center mb-4">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white text-center mb-4">
           Designed for everyone in healthcare
         </h2>
-        <p className="text-healthcare-blue/70 text-center max-w-2xl mx-auto mb-12">
+        <p className="text-white/80 text-center max-w-2xl mx-auto mb-12">
           From doctors to patients to labs — LHXP serves every role.
         </p>
 

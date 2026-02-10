@@ -33,12 +33,12 @@ const items = [
 
 export default function Differentiators() {
   return (
-    <section className="section-padding bg-healthcare-bgDark">
+    <section className="section-padding bg-healthcare-blue">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-healthcare-blue text-center mb-4">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white text-center mb-4">
           Why LHXP is different
         </h2>
-        <p className="text-healthcare-blue/70 text-center max-w-2xl mx-auto mb-16">
+        <p className="text-white/80 text-center max-w-2xl mx-auto mb-16">
           Designed for real healthcare, not tech demos.
         </p>
 

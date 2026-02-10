@@ -49,16 +49,16 @@ const steps = [
 
 export default function ConsultationOnTheGo() {
   return (
-    <section id="consultation-on-the-go" className="section-padding bg-healthcare-bg">
+    <section id="consultation-on-the-go" className="section-padding bg-healthcare-blue">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-healthcare-blue mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
             Consultation On the Go
           </h2>
-          <p className="text-healthcare-blue/70 max-w-2xl mx-auto mb-6">
+          <p className="text-white/80 max-w-2xl mx-auto mb-6">
             Think ATM for healthcare. Walk into a booth, get a consultation, hear your AI prescription summary, buy medicines with wallet coins, and receive them in the booth within ~10 minutes.
           </p>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-healthcare-teal/10 text-healthcare-teal font-medium text-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-healthcare-mint font-medium text-sm">
             <span aria-hidden>🏥</span>
             <span>One booth. Consult → Prescription → Meds → Done.</span>
           </div>
@@ -99,14 +99,14 @@ export default function ConsultationOnTheGo() {
           ))}
         </div>
 
-        <div className="mt-16 rounded-card bg-gradient-to-br from-healthcare-teal/15 to-healthcare-mint/15 border border-healthcare-teal/30 p-6 sm:p-8 text-center">
-          <h3 className="font-semibold text-healthcare-blue text-lg mb-2">
+        <div className="mt-16 rounded-card bg-gradient-to-br from-white/10 to-white/5 border border-white/20 p-6 sm:p-8 text-center">
+          <h3 className="font-semibold text-white text-lg mb-2">
             Earn Wallet Coins
           </h3>
-          <p className="text-healthcare-blue/80 text-sm max-w-xl mx-auto mb-4">
+          <p className="text-white/90 text-sm max-w-xl mx-auto mb-4">
             Use coins from consultations, referring patients or users, and engagement — then spend them on medicines and services at the booth.
           </p>
-          <p className="text-healthcare-teal font-medium text-sm">
+          <p className="text-white font-medium text-sm">
             Consultation On the Go: healthcare that fits your time, right where you are.
           </p>
         </div>

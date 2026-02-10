@@ -19,6 +19,7 @@ export default {
       colors: {
         healthcare: {
           blue: '#184E77',
+          blueDark: '#0f3550',
           teal: '#34A0A4',
           mint: '#76C893',
           sky: '#5B9EAD',

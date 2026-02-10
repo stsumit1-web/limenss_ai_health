@@ -1,18 +1,60 @@
+import { useState, useEffect } from 'react';
+
+const heroSlides = [
+  {
+    src: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=90',
+    alt: 'Booth consultation — patient talking to doctor online',
+    title: 'Booth consultation',
+    subtitle: 'Patient with doctor, private and secure',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=900&q=90',
+    alt: 'Generative AI in healthcare',
+    title: 'Generative AI',
+    subtitle: 'Smart summaries and clear explanations',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=90',
+    alt: 'Kiosk screens for self-service healthcare',
+    title: 'Kiosk screens',
+    subtitle: 'Self-service at your fingertips',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=90',
+    alt: 'Tokenized system — digital queue and access',
+    title: 'Tokenized system',
+    subtitle: 'Queue, access, and rewards — digitized',
+  },
+];
+
 export default function Hero() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setCurrent((c) => (c + 1) % heroSlides.length);
+    }, 4500);
+    return () => clearInterval(t);
+  }, []);
+
+  const goTo = (index) => setCurrent(index);
+  const next = () => setCurrent((c) => (c + 1) % heroSlides.length);
+  const prev = () => setCurrent((c) => (c - 1 + heroSlides.length) % heroSlides.length);
+
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center bg-healthcare-bg overflow-hidden">
-      {/* Soft gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-healthcare-bgDark via-healthcare-bg to-healthcare-ice" />
-      <div className="absolute top-20 right-0 w-96 h-96 bg-healthcare-teal/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-0 w-80 h-80 bg-healthcare-mint/15 rounded-full blur-3xl" />
+    <section className="relative min-h-[90vh] flex flex-col justify-center bg-healthcare-blue overflow-hidden">
+      {/* Soft gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-healthcare-blue via-healthcare-blue to-healthcare-blue/95" />
+      <div className="absolute top-20 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-0 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
 
       <div className="relative section-padding max-w-6xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-healthcare-blue leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
               Healthcare without queues, confusion, or chaos
             </h1>
-            <p className="text-lg sm:text-xl text-healthcare-blue/80 leading-relaxed mb-8 max-w-xl">
+            <p className="text-lg sm:text-xl text-white/90 leading-relaxed mb-8 max-w-xl">
               One AI-powered platform that connects patients, doctors, clinics, labs, pharmacies, and hospitals — across web, mobile, and kiosks.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -25,47 +67,70 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Hero illustration - connected ecosystem */}
-          <div className="relative aspect-square max-w-lg mx-auto lg:mx-0">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-full h-full">
-                {/* Central AI connection node */}
-                <div className="absolute inset-0 m-auto w-24 h-24 rounded-full bg-healthcare-teal/20 border-2 border-healthcare-teal flex items-center justify-center animate-pulse">
-                  <span className="text-healthcare-teal font-bold text-sm">AI</span>
+          {/* Hero image slider */}
+          <div className="relative aspect-[4/3] sm:aspect-[5/4] max-w-lg mx-auto lg:mx-0 rounded-card overflow-hidden border-2 border-white/15 shadow-2xl bg-healthcare-blueDark/30">
+            {heroSlides.map((slide, i) => (
+              <div
+                key={i}
+                className={`absolute inset-0 transition-opacity duration-500 ${
+                  i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                }`}
+              >
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  className="w-full h-full object-cover"
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  onError={(e) => {
+                    const t = e.target;
+                    if (t.dataset.fallbackUsed) return;
+                    t.dataset.fallbackUsed = '1';
+                    t.src = `https://placehold.co/800x600/184E77/ffffff?text=${encodeURIComponent(slide.title)}`;
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                  <p className="text-white font-semibold text-lg sm:text-xl">{slide.title}</p>
+                  <p className="text-white/90 text-sm mt-0.5">{slide.subtitle}</p>
                 </div>
-                {/* Patient on mobile */}
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-28 rounded-card bg-healthcare-cream shadow-lg border border-healthcare-bgDark p-2">
-                  <div className="w-full h-8 rounded bg-healthcare-mint/30 mb-2" />
-                  <div className="w-full h-12 rounded bg-healthcare-cream" />
-                  <div className="mt-2 text-[10px] text-center text-healthcare-blue/70">Patient</div>
-                </div>
-                {/* Doctor with writing pad */}
-                <div className="absolute top-1/2 -right-4 -translate-y-1/2 w-20 h-24 rounded-card bg-healthcare-cream shadow-lg border border-healthcare-bgDark p-2">
-                  <div className="w-full h-16 rounded bg-healthcare-teal/10" />
-                  <div className="mt-2 text-[10px] text-center text-healthcare-blue/70">Doctor</div>
-                </div>
-                {/* Clinic dashboard */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-28 h-18 rounded-card bg-healthcare-cream shadow-lg border border-healthcare-bgDark p-2">
-                  <div className="grid grid-cols-3 gap-1 mb-2">
-                    <div className="h-4 rounded bg-healthcare-mint/30" />
-                    <div className="h-4 rounded bg-healthcare-teal/20" />
-                    <div className="h-4 rounded bg-healthcare-mint/30" />
-                  </div>
-                  <div className="text-[10px] text-center text-healthcare-blue/70">Clinic</div>
-                </div>
-                {/* Kiosk */}
-                <div className="absolute top-1/2 -left-4 -translate-y-1/2 w-16 h-24 rounded-card bg-healthcare-cream shadow-lg border border-healthcare-bgDark p-2">
-                  <div className="w-full h-12 rounded bg-healthcare-ice mb-2" />
-                  <div className="text-[10px] text-center text-healthcare-blue/70">Kiosk</div>
-                </div>
-                {/* Connection lines (simplified) */}
-                <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30">
-                  <line x1="50%" y1="50%" x2="50%" y2="15%" stroke="#34A0A4" strokeWidth="1" strokeDasharray="4 4" />
-                  <line x1="50%" y1="50%" x2="85%" y2="50%" stroke="#34A0A4" strokeWidth="1" strokeDasharray="4 4" />
-                  <line x1="50%" y1="50%" x2="15%" y2="50%" stroke="#34A0A4" strokeWidth="1" strokeDasharray="4 4" />
-                  <line x1="50%" y1="50%" x2="50%" y2="75%" stroke="#34A0A4" strokeWidth="1" strokeDasharray="4 4" />
-                </svg>
               </div>
+            ))}
+
+            {/* Prev / Next */}
+            <button
+              type="button"
+              onClick={prev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors"
+              aria-label="Previous slide"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors"
+              aria-label="Next slide"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            {/* Dots */}
+            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+              {heroSlides.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    i === current ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/70'
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>

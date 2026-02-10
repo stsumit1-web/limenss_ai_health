@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-healthcare-blue text-white section-padding">
+    <footer className="bg-healthcare-blueDark text-white section-padding">
       <div className="max-w-6xl mx-auto">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
@@ -12,7 +12,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-sm mb-4 uppercase tracking-wider text-white/70">Contact</h4>
             <p className="text-white/80 text-sm">
-              <a href="mailto:info.limenssgroup@gmail.com" className="hover:text-white transition-colors">info.limenssgroup@gmail.com</a>
+              <a href="mailto:info.limenssgroup@gmail.com" className="hover:text-healthcare-mint transition-colors">info.limenssgroup@gmail.com</a>
             </p>
           </div>
           <div>

@@ -7,7 +7,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply text-healthcare-blue antialiased bg-healthcare-bg;
+    @apply text-white antialiased bg-healthcare-blue;
   }
 }
 
